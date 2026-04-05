@@ -226,4 +226,26 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
+  /**
+ * Auto calculate age
+ */
+window.addEventListener('load', function () {
+  const birthEl = document.getElementById("birthdate");
+  const ageEl = document.getElementById("age");
+
+  if (birthEl && ageEl) {
+    const birthDate = new Date(birthEl.dataset.date);
+    const today = new Date();
+
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+
+    ageEl.innerText = age;
+  }
+});
+
 })();
